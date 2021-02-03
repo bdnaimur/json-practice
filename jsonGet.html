@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Json-Get</title>
+</head>
+
+<body>
+    <h1>Json Get Data </h1>
+    <ul id="ul-container">
+
+    </ul>
+
+    <script>
+        const person = {
+            name: "Haisam",
+            age: 20,
+            hobby: "Fishing",
+            address: "Alu-Bazar"
+        }
+        const jsonPerson = JSON.stringify(person);
+        const jsonObject = JSON.parse(jsonPerson);
+        console.log(person);
+        console.log(jsonPerson);
+        console.log(jsonObject);
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then((response) => response.json())
+            .then((data) => displayData(data));
+            const ul = document.getElementById("ul-container");
+            function displayData(usersName){
+                const personName = usersName.map(x => x.username);
+                for (let i = 0; i < personName.length; i++) {
+                    const element = personName[i];
+                    const li = document.createElement("li");
+                    li.innerText = element;
+                    // var textnode = document.createTextNode("Water");
+                    // node.appendChild(textnode);
+                    ul.appendChild(li);                    
+                    document.getElementById("ul-container").appendChild(li);
+                    
+                }
+            }
+    </script>
+</body>
+
+</html>
